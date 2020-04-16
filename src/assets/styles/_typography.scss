@@ -1,0 +1,38 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: map-get($font-familys, title);
+}
+
+h1 {
+  font-size: map-get($font-sizes, h1);
+  line-height: 1.5;
+}
+
+h2 {
+  font-size: map-get($font-sizes, h2);
+  line-height: 1.5;
+}
+
+h3 {
+  font-size: map-get($font-sizes, h3);
+  line-height: 1.5;
+}
+
+h4 {
+  font-size: map-get($font-sizes, h4);
+  line-height: 1.5;
+}
+
+h5 {
+  font-size: map-get($font-sizes, h5);
+  line-height: 1.5;
+}
+
+h6 {
+  font-size: map-get($font-sizes, h6);
+  line-height: 1.5;
+}

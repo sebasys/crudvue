@@ -1,0 +1,13 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: map-get($font-familys, "default");
+  font-size: 1.3rem;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
