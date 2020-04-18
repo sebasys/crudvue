@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     onEvent() {
-      this.$emit('onevent')
+      this.$emit("onevent");
     }
   }
 };

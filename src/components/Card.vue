@@ -1,6 +1,8 @@
 <template>
   <article class="card">
-    <header>{{ name }} {{ lastname }}</header>
+    <header>
+      <span @click="redirect">{{ name }} {{ lastname }}</span>
+    </header>
     <div>
       <h3>{{ title }}</h3>
       <p>{{ description }}</p>
@@ -24,13 +26,26 @@ export default {
     Button
   },
   props: {
-    id: Number,
-    name: String,
-    lastname: String,
-    title: String,
-    description: String,
-    cbDelete: Function,
-    cbEdit: Function
+    id: {
+      type: Number,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    lastname: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    }
   },
   methods: {
     handleDelete() {
@@ -40,6 +55,11 @@ export default {
     handleEdit() {
       this.$emit("emitedit", this.id);
       // console.log("edit card", this.id);
+      this.$router.push(`/users/edit/${this.id}`);
+    },
+    redirect() {
+      console.log("redirect!!", this.$router, this.id);
+      this.$router.push(`/users/${this.id}`);
     }
   }
 };

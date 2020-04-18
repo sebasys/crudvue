@@ -1,15 +1,16 @@
 <template>
-  <div class="modal">
-    <div class="modal-inner" :class="classButton">
+  <div class="modal" :class="classOpenClose">
+    <div class="modal-inner" :class="classModal">
       <header class="modal-header">
         Header
+        <Button type="primary" v-on:onevent="onClose">X</Button>
       </header>
       <div class="modal-body">
         <slot></slot>
       </div>
       <footer class="modal-footer">
-        <Button type="primary" onevent="onAccept">Aceptar</Button>
-        <Button type="secondary" onevent="onCancel">Cancelar</Button>
+        <Button type="primary" v-on:onevent="handleAccept">Aceptar</Button>
+        <Button type="secondary" v-on:onevent="handleCancel">Cancelar</Button>
       </footer>
     </div>
   </div>
@@ -20,23 +21,38 @@ import Button from "./Button.vue";
 
 export default {
   name: "Modal",
-  props: {
-    type: String
-  },
-  component: {
+  components: {
     Button
   },
+  props: {
+    type: String,
+    open: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data: function() {
+    return {
+      openValue: open
+    };
+  },
   computed: {
-    classButton: function() {
+    classModal: function() {
       return this.type === "small" ? "small" : "medium";
+    },
+    classOpenClose: function() {
+      return this.open ? "is-active" : "";
     }
   },
   methods: {
-    onAccept() {
-      this.$emit("onaccept");
+    handleAccept() {
+      this.$emit("onaccept", true);
     },
-    onCancel() {
-      this.$emit("oncancel");
+    handleCancel() {
+      this.$emit("oncancel",false);
+    },
+    onClose() {
+      this.$emit("close");
     }
   }
 };
@@ -51,7 +67,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
-
+  top: 0;
+  left: 0;
   &-inner {
     background: #fff;
     padding: 10px;
@@ -71,7 +88,7 @@ export default {
     }
   }
 
-  &.-is-active {
+  &.is-active {
     display: flex;
   }
 }
